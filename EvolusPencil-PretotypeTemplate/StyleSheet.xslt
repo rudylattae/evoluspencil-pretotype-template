@@ -10,23 +10,32 @@
                 <title>
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
-                <link rel="stylesheet" type="text/css" href="Resources/Style.css"><xsl:text></xsl:text></link>
+                <style>
+                    html, body {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .page { 
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                    }
+                </style>
             </head>
             <body>
                 <xsl:apply-templates select="/p:Document/p:Pages/p:Page" />
             </body>
         </html>
     </xsl:template>
+
     <xsl:template match="p:Page">
-        <div class="Page" id="{p:Properties/p:Property[@name='fid']/text()}_page">
-            <div class="ImageContainer">
-                <img src="{@rasterized}"
-                    width="{p:Properties/p:Property[@name='width']/text()}"
-                    height="{p:Properties/p:Property[@name='height']/text()}"
-                    usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
-            </div>
+        <div class="page" id="{p:Properties/p:Property[@name='fid']/text()}">
+            <img src="{@rasterized}"
+                width="{p:Properties/p:Property[@name='width']/text()}"
+                height="{p:Properties/p:Property[@name='height']/text()}"
+                usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
             <xsl:if test="p:Note">
-                <p class="Notes">
+                <p class="notes">
                     <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
                 </p>
             </xsl:if>
@@ -35,6 +44,7 @@
             </map>
         </div>
     </xsl:template>
+
     <xsl:template match="p:Link">
         <area shape="rect"
             coords="{@x},{@y},{@x+@w},{@y+@h}" href="#{@targetFid}_page" title="Go to page '{@targetName}'"/>
