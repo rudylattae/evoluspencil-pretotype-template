@@ -61,7 +61,7 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template match="html:a[@page-fid]" mode="processing-notes">
-        <a href="#/page/{@page-fid}" title="Go tp page '{@page-name}'">
+        <a href="#/page/{@page-fid}" title="Go to page '{@page-name}'">
             <xsl:copy-of select="@class|@style"/>
             <xsl:apply-templates mode="processing-notes"/>
         </a>
