@@ -4,9 +4,9 @@ Path.map("#/page/:page_id").to(function(){
     var page_id = this.params['page_id'];
     var pages = $('.page');
     for(i=0; i<pages.length; i++) {
-        pages[i].hidden = true;
+        pages[i].style.display = 'none';
     }
-    $('#'+page_id).hidden = false;
+    $('#'+page_id).style.display = '';
 });
 
 Path.root("#/page/start");
