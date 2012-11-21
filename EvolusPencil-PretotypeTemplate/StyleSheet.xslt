@@ -34,7 +34,7 @@
 
     <xsl:template match="p:Page">
         <div class="page" id="{p:Properties/p:Property[@name='fid']/text()}">
-            <img src="{@rasterized}"
+            <img src="pages/{p:Properties/p:Property[@name='fid']/text()}.png"
                 width="{p:Properties/p:Property[@name='width']/text()}"
                 height="{p:Properties/p:Property[@name='height']/text()}"
                 usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
