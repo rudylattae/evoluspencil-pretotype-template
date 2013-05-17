@@ -28,16 +28,51 @@
                         -moz-box-sizing:border-box;
                         width: 100%;
                         height: 40%;
-                        bottom: 0;
                         opacity: 0.9;
                         color: #fff;
-                        padding: 1em;
-                        overflow: auto;
-                    }
-                    .notes > pre, .notes > div {
-                        margin: 0;
                         padding: 0;
+                        margin: 0;
+                        bottom: -40%;
                     }
+                        .notes .open {
+                            display: block;
+                            position: absolute;
+                            top: -30px;
+                            right: 25px;
+                            padding: 0.5em;
+                            color: black;
+                            cursor: pointer;
+                        }
+                        .notes .close {
+                            position: absolute;
+                            top: 10px;
+                            right: 25px;
+                            color: #fff;
+                            background: rgba(255,255,255,0.5);
+                            padding: 0.5em;
+                            font-family: "Lucida Console";
+                            cursor: pointer;
+                            display: none;
+                        }
+                        .notes .content {
+                            margin: 0;
+                            padding: 0.5em;
+                            box-sizing:border-box;
+                            -webkit-box-sizing:border-box;
+                            -moz-box-sizing:border-box;
+                            overflow: auto;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    .notes.visible {
+                        bottom: 0;
+                    }
+                        .notes.visible .open {
+                            display: none;
+                        }
+                        .notes.visible .close {
+                            display: block;
+                        }
                 </style>
 
                 <script type="text/javascript" src="Resources/path.min.js">
@@ -61,8 +96,12 @@
                 height="{p:Properties/p:Property[@name='height']/text()}"
                 usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
             <xsl:if test="p:Note/node()">
-                <div class="notes">
-                    <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
+                <div class="notes visible">
+                    <span class="open">notes</span>
+                    <span class="close">X</span>
+                    <div class="content">
+                        <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
+                    </div>
                 </div>
             </xsl:if>
             <map name="map_{p:Properties/p:Property[@name='fid']/text()}">
