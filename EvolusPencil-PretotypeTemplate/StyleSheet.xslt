@@ -20,14 +20,36 @@
                         padding: 0;
                         width: 100%;
                     }
+                    .notes { 
+                        background-color: #000;
+                        position: fixed;
+                        box-sizing:border-box;
+                        -webkit-box-sizing:border-box;
+                        -moz-box-sizing:border-box;
+                        width: 100%;
+                        height: 40%;
+                        bottom: 0;
+                        opacity: 0.9;
+                        color: #fff;
+                        padding: 1em;
+                        overflow: auto;
+                    }
+                    .notes > pre, .notes > div {
+                        margin: 0;
+                        padding: 0;
+                    }
                 </style>
 
-                <script type="text/javascript" src="Resources/path.min.js"></script>
+                <script type="text/javascript" src="Resources/path.min.js">
+                    //
+                </script>
             </head>
             <body>
                 <xsl:apply-templates select="/p:Document/p:Pages/p:Page" />
 
-                <script type="text/javascript" src="Resources/main.js"></script>
+                <script type="text/javascript" src="Resources/main.js">
+                    //
+                </script>
             </body>
         </html>
     </xsl:template>
@@ -38,10 +60,10 @@
                 width="{p:Properties/p:Property[@name='width']/text()}"
                 height="{p:Properties/p:Property[@name='height']/text()}"
                 usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
-            <xsl:if test="p:Note">
-                <p class="notes">
+            <xsl:if test="p:Note/node()">
+                <div class="notes">
                     <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
-                </p>
+                </div>
             </xsl:if>
             <map name="map_{p:Properties/p:Property[@name='fid']/text()}">
                 <xsl:apply-templates select="p:Links/p:Link" />
