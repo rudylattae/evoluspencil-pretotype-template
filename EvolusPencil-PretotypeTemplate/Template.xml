@@ -1,6 +1,6 @@
 <Template xmlns="http://www.evolus.vn/Namespace/Pencil">
-    <Property name="id">Evolus:HTML:PretotypeTemplate_042_dev</Property>
-    <Property name="name">Pretotype Template (0.4.2-dev)</Property>
+    <Property name="id">Evolus:HTML:PretotypeTemplate_045_dev</Property>
+    <Property name="name">Pretotype Template (0.4.5-dev)</Property>
     <Property name="author">Rudy Lattae</Property>
     <Property name="description">Outputs all the pages as a single page clickable pretotype.</Property>
 
