@@ -8,7 +8,7 @@ dist_dir=$base_dir/dist
 
 ## Project info
 project_name=EvolusPencil-PretotypeTemplate
-project_version=0.4.5-b
+project_version=0.4.6-dev
 
 ## Package info
 package_source=$base_dir/$project_name
