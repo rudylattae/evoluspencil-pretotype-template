@@ -48,7 +48,7 @@
 
     <xsl:template match="p:Link">
         <area shape="rect"
-            coords="{@x},{@y},{@x+@w},{@y+@h}" href="#/page/{@targetFid}" title="Go to page '{@targetName}'"/>
+            coords="{@x},{@y},{@x+@w},{@y+@h}" href="#/page/{@targetFid}" title="{@targetName}"/>
     </xsl:template>
     
     <xsl:template match="html:*" mode="processing-notes">
@@ -58,7 +58,7 @@
         </xsl:copy>
     </xsl:template>
     <xsl:template match="html:a[@page-fid]" mode="processing-notes">
-        <a href="#/page/{@page-fid}" title="Go to page '{@page-name}'">
+        <a href="#/page/{@page-fid}" title="{@page-name}">
             <xsl:copy-of select="@class|@style"/>
             <xsl:apply-templates mode="processing-notes"/>
         </a>
