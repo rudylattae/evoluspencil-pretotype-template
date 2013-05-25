@@ -33,8 +33,8 @@
                 usemap="#map_{p:Properties/p:Property[@name='fid']/text()}"/>
             <xsl:if test="p:Note/node()">
                 <div class="notes">
-                    <span class="open" title="Show Notes">?</span>
-                    <span class="close" title="Hide Notes">X</span>
+                    <span class="open control" title="Show Notes">?</span>
+                    <span class="close control" title="Hide Notes">X</span>
                     <div class="content">
                         <xsl:apply-templates select="p:Note/node()" mode="processing-notes"/>
                     </div>

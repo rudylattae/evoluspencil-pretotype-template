@@ -27,13 +27,10 @@ body {
     -webkit-transition: bottom 0.4s;
     transition: bottom 0.4s;
 }
-    .notes .open {
-        display: block;
+    .notes .control {
         position: absolute;
-        top: -26px;
-        right: 25px;
         width: 2em;
-        height: 1.6em;
+        height: 2em;
         color: #333;
         background-color: #777;
         opacity: 0.8;
@@ -43,25 +40,19 @@ body {
         cursor: pointer;
         text-align: center;
         vertical-align: bottom;
-        line-height: 1.8em;
-        border-radius: 0.5em 0.5em 0 0;
+        line-height: 2em;
+        border-radius: 1em;
     }
-    .notes .close {
+
+    .notes .control.open {
+        display: block;
+        top: -40px;
+        right: 10px;
+    }
+    .notes .control.close {
         display: none;
-        position: absolute;
-        top: -26px;
-        right: 25px;
-        color: #333;
-        background-color: #777;
-        opacity: 0.8;
-        width: 2em;
-        height: 1.6em;
-        font-family: "Lucida Console";
-        font-size: 1em;
-        cursor: pointer;
-        text-align: center;
-        line-height: 1.8em;
-        border-radius: 0.5em 0.5em 0 0;
+        top: 10px;
+        right: 10px;
     }
     .notes .content {
         margin: 0;
@@ -78,9 +69,9 @@ body {
     -webkit-transition: bottom 0.4s;
     transition: bottom 0.4s;
 }
-    .notes.visible .open {
+    .notes.visible .control.open {
         display: none;
     }
-    .notes.visible .close {
+    .notes.visible .control.close {
         display: block;
     }
