@@ -1,4 +1,4 @@
-var $ = function(a,b){a=a.match(/^(\W)?(.*)/);return(b||document)["getElement"+(a[1]?a[1]=="#"?"ById":"sByClassName":"sByTagName")](a[2])};
+//var $ = function(a,b){a=a.match(/^(\W)?(.*)/);return(b||document)["getElement"+(a[1]?a[1]=="#"?"ById":"sByClassName":"sByTagName")](a[2])};
 
 
 function onCloseBtnClick() {
@@ -38,10 +38,13 @@ wireUpOpenButtons();
 Path.map("#/page/:page_id").to(function(){
     var page_id = this.params['page_id'];
     var pages = $('.page');
-    for(i=0; i<pages.length; i++) {
+    pages.forEach(function( el ) {
+        el.hide();
+    });
+    /*for(i=0; i<pages.length; i++) {
         pages[i].style.display = 'none';
-    }
-    $('#'+page_id).style.display = '';
+    }*/
+    $('#'+page_id).show();
 });
 
 Path.root("#/page/start");

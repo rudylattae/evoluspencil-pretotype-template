@@ -11,7 +11,7 @@
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
                 <link rel="stylesheet" type="text/css" href="Resources/style.css"/>
-                <script type="text/javascript" src="Resources/path.min.js">
+                <script type="text/javascript" src="Resources/lib.js">
                     //
                 </script>
             </head>
