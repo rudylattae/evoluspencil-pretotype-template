@@ -13,7 +13,7 @@ Element.prototype.attr = function(name, value) {
   }
 };
 Element.prototype.css = function(prop, value) {
-  if (value) {
+  if (typeof value !== 'undefined') {
     this.style[prop] = value;
   } else {
     return this.style[prop];

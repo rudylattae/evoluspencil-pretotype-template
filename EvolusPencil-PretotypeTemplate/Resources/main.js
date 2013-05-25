@@ -1,6 +1,3 @@
-//var $ = function(a,b){a=a.match(/^(\W)?(.*)/);return(b||document)["getElement"+(a[1]?a[1]=="#"?"ById":"sByClassName":"sByTagName")](a[2])};
-
-
 function onCloseBtnClick() {
     this.parentElement.classList.remove('visible');
 }
@@ -41,9 +38,6 @@ Path.map("#/page/:page_id").to(function(){
     pages.forEach(function( el ) {
         el.hide();
     });
-    /*for(i=0; i<pages.length; i++) {
-        pages[i].style.display = 'none';
-    }*/
     $('#'+page_id).show();
 });
 
