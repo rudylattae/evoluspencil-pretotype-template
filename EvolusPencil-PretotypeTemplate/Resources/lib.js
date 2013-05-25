@@ -4,6 +4,9 @@ window.$=function(a){var b={"#":"getElementById",".":"getElementsByClassName","@
 
 // saltines.js
 Element.prototype.find = Element.prototype.querySelectorAll;
+Element.prototype.parent = function() {
+    return this.parentElement;
+}
 Element.prototype.attr = function(name, value) {
   if(value) {
     this.setAttribute(name, value);
@@ -24,8 +27,21 @@ Element.prototype.hide = function() {
 Element.prototype.show = function() {
     this.css('display', '');
 };
-Element.prototype.on = function(evt, fn) {
-  this['on'+evt] = fn.bind(this);
+Element.prototype.addClass = function( c ) {
+    this.classList.add( c );
+};
+Element.prototype.removeClass = function( c ) {
+    this.classList.remove( c );
+};
+Element.prototype.hasClass = function( c ) {
+    return this.classList.contains( c );
+};
+Element.prototype.toggleClass = function( c ) {
+    if ( this.classList.contains( c ) ) this.addClass( c );
+    else this.removeClass( c );
+};
+Element.prototype.on = function(type, listener, capture) {
+    this.addEventListener( type, listener, capture );
 };
 NodeList.prototype.forEach = Array.prototype.forEach;
 NodeList.prototype.hide = function() {
@@ -36,6 +52,11 @@ NodeList.prototype.hide = function() {
 NodeList.prototype.show = function() {
     this.forEach(function( el ) {
         el.show();
+    });
+};
+NodeList.prototype.on = function(type, listener, capture) {
+    this.forEach(function( el ) {
+        el.on(type, listener, capture);
     });
 };
 
