@@ -12,7 +12,7 @@ body {
     overflow: hidden;
 }
 .notes { 
-    background-color: #222;
+    background-color: #111;
     position: fixed;
     box-sizing:border-box;
     -webkit-box-sizing:border-box;
