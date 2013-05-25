@@ -34,10 +34,7 @@ wireUpOpenButtons();
 
 Path.map("#/page/:page_id").to(function(){
     var page_id = this.params['page_id'];
-    var pages = $('.page');
-    pages.forEach(function( el ) {
-        el.hide();
-    });
+    $('.page').hide();
     $('#'+page_id).show();
 });
 

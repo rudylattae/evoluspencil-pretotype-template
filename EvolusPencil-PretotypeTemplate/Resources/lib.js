@@ -3,7 +3,6 @@
 window.$=function(a){var b={"#":"getElementById",".":"getElementsByClassName","@":"getElementsByName","=":"getElementsByTagName","*":"querySelectorAll"}[a[0]];return document[b](a.slice(1))};
 
 // saltines.js
-NodeList.prototype.forEach = Array.prototype.forEach;
 Element.prototype.find = Element.prototype.querySelectorAll;
 Element.prototype.attr = function(name, value) {
   if(value) {
@@ -27,6 +26,17 @@ Element.prototype.show = function() {
 };
 Element.prototype.on = function(evt, fn) {
   this['on'+evt] = fn.bind(this);
+};
+NodeList.prototype.forEach = Array.prototype.forEach;
+NodeList.prototype.hide = function() {
+    this.forEach(function( el ) {
+        el.hide();
+    });
+};
+NodeList.prototype.show = function() {
+    this.forEach(function( el ) {
+        el.show();
+    });
 };
 
 // cookie.min.js
