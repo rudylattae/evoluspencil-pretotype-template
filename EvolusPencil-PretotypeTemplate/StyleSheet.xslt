@@ -2,7 +2,7 @@
     xmlns:p="http://www.evolus.vn/Namespace/Pencil"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="http://www.w3.org/1999/xhtml">
-<xsl:output method="html"/>
+<xsl:output method="html" doctype-system="about:legacy-compat"/>
 
     <xsl:template match="/">
         <html>
@@ -10,6 +10,7 @@
                 <title>
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="stylesheet" type="text/css" href="Resources/style.css"/>
                 <script type="text/javascript" src="Resources/lib.js">
