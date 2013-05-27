@@ -8,7 +8,7 @@ set dist_dir=%~dp0dist
 
 :: Project info
 set project_name=EvolusPencil-PretotypeTemplate
-set project_version=0.4.6-b
+set project_version=0.4.7-dev
 
 :: Package info
 set package_source=%base_dir%%project_name%
