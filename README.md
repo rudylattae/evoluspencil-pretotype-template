@@ -6,4 +6,4 @@ templates which are focused on generating output for linear presentation, this t
 is meant to output your pencil project as a clickable [pretotype](http://www.pretotyping.org).
 
 
-More information to come soon. 
+Please see http://rudylattae.github.io/evoluspencil-pretotype-template/ for more information. 
