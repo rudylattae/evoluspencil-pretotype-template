@@ -9,7 +9,7 @@ output your pencil project as a clickable [pretotype](http://www.pretotyping.org
 Please see http://rudylattae.github.io/evoluspencil-pretotype-template/ for more information. 
 
 
-## Contribute
+## Contributing
 
 I welcome any questions or feedback about bugs and suggestions on how to improve this template.
 
