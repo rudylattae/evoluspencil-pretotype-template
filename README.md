@@ -29,7 +29,5 @@ Author/Maintainer: [Rudy Lattae](https://github.com/rudylattae), [@RudyLattae](h
 
 Copyright and License: [MIT](MIT.LICENSE)
 
-Credits:
-
-A big thanks to the folks at [Evolus](http://evolus.vn/en-US/Default.aspx) for building 
+Credits: A big thanks to the folks at [Evolus](http://evolus.vn/en-US/Default.aspx) for building 
 and sharing for FREE, the wonderful mockup/prototyping tool [Pencil](http://pencil.evolus.vn).
