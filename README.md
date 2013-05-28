@@ -19,5 +19,12 @@ Alternatively, you may fork the project, make your modifications and create a pu
 
 If you are adding a new feature or fixing a bug, create an issue for it so as to minimize duplication of effort.
 
-Enjoy,
-Rudy
+Enjoy!
+
+
+## Meta
+
+Author/Maintainer: [Rudy Lattae](https://github.com/rudylattae), [@RudyLattae](https://twitter.com/RudyLattae)
+
+Copyright and License: [MIT](MIT.LICENSE)
+
