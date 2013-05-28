@@ -15,7 +15,8 @@ I welcome any questions or feedback about bugs and suggestions on how to improve
 
 If you have some suggestions for improvement, please create an issue with details of what you would like to see.
 
-Alternatively, you may fork the project, make your modifications and create a pull request. I'll be more than happy to merge in your work.
+Alternatively, you may fork the project, make your modifications and create a pull request. 
+I'll be more than happy to merge in your work.
 
 If you are adding a new feature or fixing a bug, create an issue for it so as to minimize duplication of effort.
 
@@ -28,3 +29,7 @@ Author/Maintainer: [Rudy Lattae](https://github.com/rudylattae), [@RudyLattae](h
 
 Copyright and License: [MIT](MIT.LICENSE)
 
+Credits:
+
+A big thanks to the folks at [Evolus](http://evolus.vn/en-US/Default.aspx) for building 
+and sharing for FREE, the wonderful mockup/prototyping tool [Pencil](http://pencil.evolus.vn).
