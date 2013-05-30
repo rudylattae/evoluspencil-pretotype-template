@@ -1,67 +1,87 @@
-// salt.min.js => https://github.com/james2doyle/saltjs 
-/*! Salt.js DOM Selector Lib. By @james2doyle */
-window.$=function(a){var b={"#":"getElementById",".":"getElementsByClassName","@":"getElementsByName","=":"getElementsByTagName","*":"querySelectorAll"}[a[0]];return document[b](a.slice(1))};
 
-// saltines.js
-Element.prototype.find = Element.prototype.querySelectorAll;
-Element.prototype.parent = function() {
-    return this.parentElement;
+// $alt.js
+function $alt( what, context ) {
+
+    // handle .ready(fn)
+    if (typeof what === 'function') {
+        /c/.test(document.readyState) ? what() : $alt(document).on('DOMContentLoaded', what)
+        return this;
+    }
+
+    var selector = what;
+    // ripped straight from salt.js
+    // an object containing the matching keys and native get commands
+    var matches = {
+        '#': 'getElementById',
+        '.': 'getElementsByClassName',
+        '@': 'getElementsByName',
+        '=': 'getElementsByTagName',
+        '*': 'querySelectorAll'
+    }[selector[0]]; // you can treat a string as an array of characters
+
+    // Wrapper
+    function NodeListWrapper( elements ) {
+        if ( typeof elements.length === 'undefined' ) 
+            this.children = [elements];
+        else
+            this.children = elements;
+    }
+    NodeListWrapper.prototype.each = function each(fn, thisArg) {
+        var i = 0,
+            z = this.children.length,
+            child;
+
+        for (; i < z; i++) {
+            fn.call(thisArg || this.children[i], this.children[i], i);
+        }
+        return this;
+    };
+    NodeListWrapper.prototype.on = function( type, listener, capture) {
+        this.each( function( el ) {
+            el.addEventListener( type, listener, capture );
+        });
+    };
+
+    NodeListWrapper.prototype.attr = function( name, value ) {
+        if ( typeof value !== 'undefined' ) {
+            this.each( function( el ) { el.setAttribute(name, value); });
+        } else {
+            return this.children[0].getAttribute(name);
+        }
+    };
+
+    NodeListWrapper.prototype.css = function( prop, value ) {
+        if ( typeof value !== 'undefined' ) {
+            this.each( function( el ) { el.style[prop] = value; });
+        } else {
+            return this.children[0].style[prop];
+        }
+    };
+    NodeListWrapper.prototype.addClass = function( c ) {
+        this.each( function( el ) { el.classList.add( c ); });
+        return this;
+    };
+    NodeListWrapper.prototype.removeClass = function( c ) {
+        this.each( function( el ) { el.classList.remove( c ); });
+        return this;
+    };
+
+    NodeListWrapper.prototype.hide = function() {
+        this.css('display', 'none');
+    };
+    NodeListWrapper.prototype.show = function() {
+        this.css('display', '');
+    };
+
+
+    // now pass the target without the key
+    return ( new NodeListWrapper(document[matches](selector.slice(1))) );
 }
-Element.prototype.attr = function(name, value) {
-  if(value) {
-    this.setAttribute(name, value);
-  } else {
-    return this.getAttribute(name);
-  }
-};
-Element.prototype.css = function(prop, value) {
-  if (typeof value !== 'undefined') {
-    this.style[prop] = value;
-  } else {
-    return this.style[prop];
-  }
-};
-Element.prototype.hide = function() {
-    this.css('display', 'none');
-};
-Element.prototype.show = function() {
-    this.css('display', '');
-};
-Element.prototype.addClass = function( c ) {
-    this.classList.add( c );
-};
-Element.prototype.removeClass = function( c ) {
-    this.classList.remove( c );
-};
-Element.prototype.hasClass = function( c ) {
-    return this.classList.contains( c );
-};
-Element.prototype.toggleClass = function( c ) {
-    if ( this.classList.contains( c ) ) this.addClass( c );
-    else this.removeClass( c );
-};
-Element.prototype.on = function(type, listener, capture) {
-    this.addEventListener( type, listener, capture );
-};
-NodeList.prototype.forEach = Array.prototype.forEach;
-NodeList.prototype.hide = function() {
-    this.forEach(function( el ) {
-        el.hide();
-    });
-};
-NodeList.prototype.show = function() {
-    this.forEach(function( el ) {
-        el.show();
-    });
-};
-NodeList.prototype.on = function(type, listener, capture) {
-    this.forEach(function( el ) {
-        el.on(type, listener, capture);
-    });
-};
+$ =  $alt;
 
 // cookie.min.js
-// Copyright (c) 2012 Florian H., https://github.com/js-coder https://github.com/js-coder/cookie.js
+// https://github.com/js-coder/cookie.js
+// Copyright (c) 2012 Florian H.
 !function(e,t){var n=function(){return n.get.apply(n,arguments)},r=n.utils={isArray:Array.isArray||function(e){return Object.prototype.toString.call(e)==="[object Array]"},isPlainObject:function(e){return!!e&&Object.prototype.toString.call(e)==="[object Object]"},toArray:function(e){return Array.prototype.slice.call(e)},getKeys:Object.keys||function(e){var t=[],n="";for(n in e)e.hasOwnProperty(n)&&t.push(n);return t},escape:function(e){return String(e).replace(/[,;"\\=\s%]/g,function(e){return encodeURIComponent(e)})},retrieve:function(e,t){return e==null?t:e}};n.defaults={},n.expiresMultiplier=86400,n.set=function(n,i,s){if(r.isPlainObject(n))for(var o in n)n.hasOwnProperty(o)&&this.set(o,n[o],i);else{s=r.isPlainObject(s)?s:{expires:s};var u=s.expires!==t?s.expires:this.defaults.expires||"",a=typeof u;a==="string"&&u!==""?u=new Date(u):a==="number"&&(u=new Date(+(new Date)+1e3*this.expiresMultiplier*u)),u!==""&&"toGMTString"in u&&(u=";expires="+u.toGMTString());var f=s.path||this.defaults.path;f=f?";path="+f:"";var l=s.domain||this.defaults.domain;l=l?";domain="+l:"";var c=s.secure||this.defaults.secure?";secure":"";e.cookie=r.escape(n)+"="+r.escape(i)+u+f+l+c}return this},n.remove=function(e){e=r.isArray(e)?e:r.toArray(arguments);for(var t=0,n=e.length;t<n;t++)this.set(e[t],"",-1);return this},n.empty=function(){return this.remove(r.getKeys(this.all()))},n.get=function(e,n){n=n||t;var i=this.all();if(r.isArray(e)){var s={};for(var o=0,u=e.length;o<u;o++){var a=e[o];s[a]=r.retrieve(i[a],n)}return s}return r.retrieve(i[e],n)},n.all=function(){if(e.cookie==="")return{};var t=e.cookie.split("; "),n={};for(var r=0,i=t.length;r<i;r++){var s=t[r].split("=");n[decodeURIComponent(s[0])]=decodeURIComponent(s[1])}return n},n.enabled=function(){if(navigator.cookieEnabled)return!0;var e=n.set("_","_").get("_")==="_";return n.remove("_"),e},typeof define=="function"&&define.amd?define(function(){return n}):typeof exports!="undefined"?exports.cookie=n:window.cookie=n}(document);
 
 // path.min.js
