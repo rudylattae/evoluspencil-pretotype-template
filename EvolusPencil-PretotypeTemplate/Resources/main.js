@@ -1,10 +1,10 @@
 (function() {
     function onCloseBtnClick() {
-        this.parentElement.classList.remove('visible');
+        $(this.parentElement).removeClass('visible');
     }
 
     function onOpenBtnClick() {
-        this.parentElement.classList.add('visible');
+        $(this.parentElement).addClass('visible');
     }
 
     $('.open').on('click', onOpenBtnClick);

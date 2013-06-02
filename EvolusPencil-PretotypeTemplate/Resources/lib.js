@@ -1,83 +1,159 @@
-
 // $alt.js
-function $alt( what, context ) {
+(function(g, document) {
 
-    // handle .ready(fn)
-    if (typeof what === 'function') {
-        /c/.test(document.readyState) ? what() : $alt(document).on('DOMContentLoaded', what)
-        return this;
-    }
-
-    var selector = what;
-    // ripped straight from salt.js
-    // an object containing the matching keys and native get commands
-    var matches = {
-        '#': 'getElementById',
-        '.': 'getElementsByClassName',
-        '@': 'getElementsByName',
-        '=': 'getElementsByTagName',
-        '*': 'querySelectorAll'
-    }[selector[0]]; // you can treat a string as an array of characters
-
-    // Wrapper
-    function NodeListWrapper( elements ) {
+    // Alternative DOM Wrapper
+    function AlternativeDomWrapper( elements ) {
         if ( typeof elements.length === 'undefined' ) 
             this.children = [elements];
         else
             this.children = elements;
     }
-    NodeListWrapper.prototype.each = function each(fn, thisArg) {
+
+    // applies the given function to each of the childern
+    AlternativeDomWrapper.prototype.each = function each(fn, thisArg) {
         var i = 0,
-            z = this.children.length,
-            child;
+            z = this.children.length;
 
         for (; i < z; i++) {
             fn.call(thisArg || this.children[i], this.children[i], i);
         }
         return this;
     };
-    NodeListWrapper.prototype.on = function( type, listener, capture) {
-        this.each( function( el ) {
-            el.addEventListener( type, listener, capture );
-        });
-    };
 
-    NodeListWrapper.prototype.attr = function( name, value ) {
+
+    // based on salt.js | https://github.com/james2doyle/saltjs
+    /*! Salt.js DOM Selector Lib. By @james2doyle */
+    function salt( selector, context ) {
+        if ( typeof context === 'undefined' ) context = document;
+
+        // an object containing the matching keys and native get commands
+        var matches = {
+            '#': 'getElementById',
+            '.': 'getElementsByClassName',
+            '@': 'getElementsByName',
+            '=': 'getElementsByTagName',
+            '*': 'querySelectorAll'
+        }[selector[0]]; // you can treat a string as an array of characters
+
+        // now pass the target without the key
+        return (context[matches](selector.slice(1)));
+    }
+
+
+    // public API
+    function $alt( document, engine, wrapper ) {
+
+        if ( typeof document === 'undefined' )
+            throw new Error('document is required');
+
+        if ( typeof engine === 'undefined' )
+            engine = salt;
+
+        if ( typeof wrapper === 'undefined' )
+            wrapper = AlternativeDomWrapper;
+
+        function api( what, context ) {
+            if ( typeof context === 'undefined' ) context = document;
+
+            // handle $(element) || $(object)
+            if (typeof what === 'object') {
+                if ( wrapper !== null ) return new wrapper( what );
+                else return what;
+            }
+
+            // handle $(fn)
+            if (typeof what === 'function') {
+                /c/.test(context.readyState) ? what() : context.addEventListener('DOMContentLoaded', what)
+                return this;
+            }
+
+            if ( wrapper !== null ) return new wrapper( engine(what, context) );
+            else return engine(what, context);
+        }
+
+        // augments the wrapper by attaching the given extensions to it's prototype
+        function extendWrapper( extensions, force ) {
+            for( name in extensions ) {
+                x = extensions[name];
+                if ( extensions.hasOwnProperty(name) 
+                        && typeof x !== 'undefined'
+                        && ( !wrapper.prototype.hasOwnProperty(name) || force) ) {
+                    wrapper.prototype[name] = x;
+                }
+                else 
+                    throw new Error('wrapper already has ' + name + ' defined');
+            }
+        }
+
+        // enable wrapper extensions
+        api.fn = wrapper.prototype;
+        api.xfn = extendWrapper;
+
+        return api;
+    }
+
+    $alt.AlternativeDomWrapper = AlternativeDomWrapper;
+
+    // exports
+    g.$alt = $alt;
+
+}(this, document));
+
+
+// $alt-basics.js
+var $ = $alt( document );
+$.xfn({
+    // dom
+    attr: function( name, value ) {
         if ( typeof value !== 'undefined' ) {
             this.each( function( el ) { el.setAttribute(name, value); });
         } else {
             return this.children[0].getAttribute(name);
         }
-    };
+        return this;
+    },
 
-    NodeListWrapper.prototype.css = function( prop, value ) {
+    // events
+    on: function( type, listener, capture) {
+        return this.each( function( el ) {
+            el.addEventListener( type, listener, capture );
+        });
+    },
+
+    off: function( type, listener) {
+        return this.each( function( el ) {
+            el.removeEventListener( type, listener, capture );
+        });
+    },
+
+    // styling
+    css: function( prop, value ) {
         if ( typeof value !== 'undefined' ) {
             this.each( function( el ) { el.style[prop] = value; });
         } else {
             return this.children[0].style[prop];
         }
-    };
-    NodeListWrapper.prototype.addClass = function( c ) {
-        this.each( function( el ) { el.classList.add( c ); });
         return this;
-    };
-    NodeListWrapper.prototype.removeClass = function( c ) {
-        this.each( function( el ) { el.classList.remove( c ); });
-        return this;
-    };
+    },
+    
+    addClass: function( c ) {
+        return this.each( function( el ) { el.classList.add( c ); });
+    },
 
-    NodeListWrapper.prototype.hide = function() {
-        this.css('display', 'none');
-    };
-    NodeListWrapper.prototype.show = function() {
-        this.css('display', '');
-    };
+    removeClass: function( c ) {
+        return this.each( function( el ) { el.classList.remove( c ); });
+    },
 
+    // visibility
+    hide: function() {
+        return this.css('display', 'none');
+    },
 
-    // now pass the target without the key
-    return ( new NodeListWrapper(document[matches](selector.slice(1))) );
-}
-$ =  $alt;
+    show: function() {
+        return this.css('display', '');
+    }
+});
+
 
 // cookie.min.js
 // https://github.com/js-coder/cookie.js
