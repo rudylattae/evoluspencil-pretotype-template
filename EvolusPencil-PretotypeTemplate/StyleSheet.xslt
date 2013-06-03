@@ -10,9 +10,18 @@
                 <title>
                     <xsl:value-of select="/p:Document/p:Properties/p:Property[@name='fileName']/text()"/>
                 </title>
+
                 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-                <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="translucent black" />
+                <link rel="apple-touch-icon-precomposed" href="Resources/images/icon_57x57.png">
+                <link rel="apple-touch-icon-precomposed" sizes="72x72" href="Resources/images/icon_72x72.png">
+                <link rel="apple-touch-icon-precomposed" sizes="114x114" href="Resources/images/icon_114x114.png">
+                <link rel="apple-touch-icon-precomposed" sizes="144x144" href="Resources/images/icon_144x144.png">
+
+                <link rel="icon" type="image/png" href="Resources/images/favicon.png" />
+
                 <link rel="stylesheet" type="text/css" href="Resources/style.css"/>
                 <script type="text/javascript" src="Resources/lib.js">
                     //
