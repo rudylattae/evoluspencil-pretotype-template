@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="logo.svg"
-   inkscape:export-filename="/Users/rudy/Projects/evoluspencil-pretotype-template/logo/favicon_32x32.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-filename="/Users/rudy/Projects/evoluspencil-pretotype-template/logo/favicon.png"
+   inkscape:export-xdpi="3.5999999"
+   inkscape:export-ydpi="3.5999999">
   <defs
      id="defs2997" />
   <sodipodi:namedview
@@ -35,8 +35,8 @@
      showgrid="false"
      inkscape:window-width="1173"
      inkscape:window-height="823"
-     inkscape:window-x="218"
-     inkscape:window-y="61"
+     inkscape:window-x="236"
+     inkscape:window-y="59"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3000">
@@ -87,7 +87,7 @@
        sodipodi:cy="397.5"
        sodipodi:rx="232.5"
        sodipodi:ry="232.5"
-       d="m 628.33334,397.5 a 232.5,232.5 0 1 1 -465,0 232.5,232.5 0 1 1 465,0 z"
+       d="m 628.33334,397.5 c 0,128.4062 -104.09379,232.5 -232.5,232.5 -128.4062,0 -232.5,-104.0938 -232.5,-232.5 0,-128.4062 104.0938,-232.5 232.5,-232.5 128.40621,0 232.5,104.0938 232.5,232.5 z"
        transform="matrix(1.1202586,0,0,1.1202586,-134.53076,-340.65405)" />
     <rect
        style="opacity:0.41121497;fill:#502d16;fill-opacity:1;stroke:#a05a2c;stroke-width:13.97355366;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
