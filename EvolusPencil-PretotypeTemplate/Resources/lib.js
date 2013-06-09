@@ -4,18 +4,18 @@
     // Alternative DOM Wrapper
     function AlternativeDomWrapper( elements ) {
         if ( typeof elements.length === 'undefined' ) 
-            this.children = [elements];
+            this.elements = [elements];
         else
-            this.children = elements;
+            this.elements = elements;
     }
 
     // applies the given function to each of the childern
     AlternativeDomWrapper.prototype.each = function each(fn, thisArg) {
         var i = 0,
-            z = this.children.length;
+            z = this.elements.length;
 
         for (; i < z; i++) {
-            fn.call(thisArg || this.children[i], this.children[i], i);
+            fn.call(thisArg || this.elements[i], this.elements[i], i);
         }
         return this;
     };
@@ -102,13 +102,14 @@
 
 // $alt-basics.js
 var $ = $alt( document );
+
 $.xfn({
     // dom
     attr: function( name, value ) {
         if ( typeof value !== 'undefined' ) {
             this.each( function( el ) { el.setAttribute(name, value); });
         } else {
-            return this.children[0].getAttribute(name);
+            return this.elements[0].getAttribute(name);
         }
         return this;
     },
@@ -131,7 +132,7 @@ $.xfn({
         if ( typeof value !== 'undefined' ) {
             this.each( function( el ) { el.style[prop] = value; });
         } else {
-            return this.children[0].style[prop];
+            return this.elements[0].style[prop];
         }
         return this;
     },
@@ -142,6 +143,16 @@ $.xfn({
 
     removeClass: function( c ) {
         return this.each( function( el ) { el.classList.remove( c ); });
+    },
+
+    hasClass: function( c ) {
+        var i = 0,
+            z = this.elements.length;
+
+        for (; i < z; i++) {
+            if ( this.elements[i].classList.contains( c ) ) return true;
+        }
+        return false;
     },
 
     // visibility

@@ -4,6 +4,8 @@ html, body {
 }
 body { 
     overflow: hidden; 
+    font-family: Verdana;
+    font-size: 0.9em;
 }
 .page { 
     margin: 0;
@@ -35,7 +37,6 @@ body {
         color: #333;
         background-color: #777;
         opacity: 0.8;
-        font-family: "Lucida Console";
         font-size: 1em;
         font-weight: bold;
         cursor: pointer;
@@ -56,6 +57,12 @@ body {
         top: 0.5em;
         right: 0.5em;
     }
+    .notes .control.pin {
+        position: fixed;
+        display: none;
+        top: 0.5em;
+        right: 2.8em;
+    }
     .notes .content {
         margin: 2.5em 0 0 0;
         padding: 0.5em;
@@ -75,6 +82,9 @@ body {
         display: none;
     }
     .notes.visible .control.close {
+        display: block;
+    }
+    .notes.visible .control.pin {
         display: block;
     }
 
