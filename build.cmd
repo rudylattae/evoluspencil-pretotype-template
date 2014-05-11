@@ -1,4 +1,4 @@
-::@echo off
+@echo off
 @setlocal
 
 set zip="C:\Program Files\7-Zip\7z.exe"
@@ -8,7 +8,7 @@ set dist_dir=%~dp0dist
 
 :: Project info
 set project_name=EvolusPencil-PretotypeTemplate
-set project_version=0.4.7-b
+set project_version=0.5.1-dev
 
 :: Package info
 set package_source=%base_dir%%project_name%

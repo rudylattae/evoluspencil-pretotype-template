@@ -1,6 +1,6 @@
 <Template xmlns="http://www.evolus.vn/Namespace/Pencil">
-    <Property name="id">Evolus:HTML:PretotypeTemplate_047_b</Property>
-    <Property name="name">Pretotype Template (0.4.7-b)</Property>
+    <Property name="id">Evolus:HTML:PretotypeTemplate_051_dev</Property>
+    <Property name="name">Pretotype Template (0.5.1-dev)</Property>
     <Property name="author">Rudy Lattae ( @RudyLattae )</Property>
     <Property name="description">Renders your website/app mockup as a "usable" interactive html pretotype.</Property>
 
