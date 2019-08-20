@@ -6,13 +6,27 @@ body {
     overflow: hidden; 
     font-family: Verdana;
     font-size: 0.9em;
+    background: #ddd;
+    height: 100vh;
 }
 .page { 
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow: hidden;
+	height: 100%;
+    display: flex;
+	align-content: center;
+	justify-content: center;
+    align-items: center;
+    overflow: auto;
 }
+    .page img {
+            background: #fff;
+            -webkit-box-shadow: 0px 11px 22px -9px rgba(0,0,0,0.78);
+            -moz-box-shadow: 0px 11px 22px -9px rgba(0,0,0,0.78);
+            box-shadow: 0px 11px 22px -9px rgba(0,0,0,0.78);
+            border-radius: 10px;
+    }
 .notes { 
     background-color: #111;
     position: fixed;
