@@ -27,8 +27,8 @@
 
     Path.map("#/page/:page_id").to(function(){
         var page_id = this.params['page_id'];
-        $('.page').hide();
-        $('#'+page_id).show();
+        $('.page').removeClass('visible');
+        $('#'+page_id).addClass('visible');
     });
 
     Path.root("#/page/start");
